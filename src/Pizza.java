@@ -2,17 +2,16 @@ import java.time.LocalTime;
 
 public class Pizza {
     int pizzaNumber;
-    int orderNumber;
     String comments;
-    String deliveryAddress;
-    LocalTime time;
 
-    public Pizza(int pizzaNumber, LocalTime time){
+    public Pizza(int pizzaNumber){
         this.pizzaNumber = pizzaNumber;
-        this.time = time;
     }
-
+    public Pizza(int pizzaNumber, String comments){
+        this.pizzaNumber = pizzaNumber;
+        this.comments = comments;
+    }
     public String toString() {
-        return "number "+pizzaNumber+" "+time.withNano(0);
+        return "\nNumber: "+pizzaNumber+"\nComments: "+comments+"\n";
     }
 }
