@@ -25,8 +25,10 @@ public class Main {
             showList();
             System.out.println("**Velkommen til Mario's Pizzabar**\nVælg en af de følgende muligheder for at fortsætte");
             System.out.println("Tast 1 for at Oprette Bestilling");
-            System.out.println("Tast 2 for at Vise Menukort");
-            System.out.println("Tast 3 for at Vise Statistik");
+            System.out.println("Tast 2 for at Redigere ordre");
+            System.out.println("Tast 3 for at Slette ordre");
+            System.out.println("Tast 4 for at Vise Menukort");
+            System.out.println("Tast 5 for at Vise Statistik");
             System.out.println("Tast 0 for at afslutte Hovedmenu");
             answer = scan.nextInt();
 
@@ -34,23 +36,30 @@ public class Main {
                 case 1:
                     System.out.println("Opret ny bestilling");
                     addOrder();
-
                     break;
 
-
                 case 2:
+                    System.out.println("Rediger ordre");
+                    //editOrder();
+                    break;
+
+                case 3:
+                    System.out.println("Slet ordre");
+                    //deleteOrder();
+
+                case 4:
                     System.out.println("Her er Mario's menukort:");
                     showMenu();
 
                     break;
-                case 3:
+                case 5:
                     System.out.println("Oversigt over omsætning samt Top 5 Pizzaer:");
                     //showStatistics();
-
                     break;
 
                 case 0:
                     System.out.println("Tak for denne gang.");
+                    System.exit(0);
 
                 default:
                     System.out.println("Ugyldig valgmulighed, vælg venligst enten 1, 2 eller 3.");
@@ -64,7 +73,6 @@ public class Main {
 
         while (menuFile.hasNextLine()) {
             System.out.println(menuFile.nextLine());
-
         }
         menuFile.close();
         return menuFile.toString();
@@ -93,4 +101,15 @@ public class Main {
         orderList.add((currentOrder));
         orderList.toString();
     }
-}
+
+    /*public static void editOrder() {
+        System.out.println("Indtast det ordrenummeret du ønsker at redigere");
+        int orderNumber = scan.nextint();
+        if (orderNumber >= 0 && orderNumber < orderList.size()){
+            System.out.println
+
+        }
+        Order editOrder = orderList().get(orderList.size())-1);*/
+    }
+
+
