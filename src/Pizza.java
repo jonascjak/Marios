@@ -1,6 +1,8 @@
+import java.io.File;
 import java.time.LocalTime;
 
 public class Pizza {
+    File menu = new File("menu.txt");
     int pizzaNumber;
     String comments;
 
