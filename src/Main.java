@@ -69,37 +69,36 @@ public class Main {
     }
 
     public static String showMenu() throws FileNotFoundException {
-        Scanner menuFile = new Scanner(new File("C:\\Users\\PC\\IdeaProjects\\projekt test\\src\\menu"));
-
+        Scanner menuFile = new Scanner(new File("src/menu.txt"));
         while (menuFile.hasNextLine()) {
             System.out.println(menuFile.nextLine());
         }
         menuFile.close();
         return menuFile.toString();
-
     }
     public static void addOrder(){
         ArrayList<Pizza> Pizzas = new ArrayList<>();
-        System.out.println("Skal bestillingen levers?");
-        String delivery = scan.next();
-        try {
             int answer;
             do {
-                System.out.println("Hvilken pizza er blevet bestitl?");
+                System.out.println("Hvilken pizza er blevet bestitl? Indtast nummeret på pizzaen og evt. kommentar");
                 Pizza first = new Pizza(scan.nextInt(), scan.nextLine());
                 Pizzas.add(first);
-                System.out.println("Vil du tilføje flere pizza'er?");
+                System.out.println("Vil du tilføje flere pizza'er?\nTast 1 for ja\nTast 2 for nej");
                 answer= scan.nextInt();
-            } while (answer != 0);
-        } catch (Exception e){
-
-        }
+            } while (answer != 2);
         LocalTime time = LocalTime.now();
-        //time.plusMinutes(15);
-        Order currentOrder = new Order(time,60,Pizzas);
-        System.out.printf(currentOrder.toString());
-        orderList.add((currentOrder));
-        orderList.toString();
+        LocalTime deliverTime = time.plusMinutes(15);
+        System.out.println("Skal bestillingen levers?\nTast 1 for ja\nTast 2 for nej");
+        int beDelivered = scan.nextInt();
+        if(beDelivered != 2){
+            System.out.println("Hvad er leverings addressen?");
+            String deliveryAddress = scan.next();
+            Order currentOrder = new Order(deliveryAddress,deliverTime.withNano(0),60,Pizzas);
+            orderList.add((currentOrder));
+        } else {
+            Order currentOrder = new Order(deliverTime.withNano(0), 60, Pizzas);
+            orderList.add((currentOrder));
+        }
     }
 
     /*public static void editOrder() {

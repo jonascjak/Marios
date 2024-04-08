@@ -12,16 +12,18 @@ double totalPrice;
         this.orderTime = orderTime;
         this.totalPrice = totalPrice;
         this.order = order;
+        this.delivery = true;
     }
 
     public Order(LocalTime orderTime, double totalPrice,ArrayList<Pizza> order){
         this.orderTime = orderTime;
         this.totalPrice = totalPrice;
         this.order = order;
+        this.delivery = false;
     }
 
     @Override
     public String toString() {
-        return !delivery ? "\nPickup time: "+orderTime+"\nTotal price: "+totalPrice+"\n"+order.toString() : "\nDelivery time: "+orderTime+"\nDelivery address: "+deliveryAddress+"\nTotal price: "+totalPrice;
+        return !delivery ? "\nPickup time: "+orderTime+"\nTotal price: "+totalPrice+"\n"+order.toString() : "\nDelivery time: "+orderTime+"\nDelivery address: "+deliveryAddress+"\nTotal price: "+totalPrice+"\n"+order.toString();
     }
 }
