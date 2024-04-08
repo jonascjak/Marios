@@ -1,1 +1,219 @@
-1 nameTest toppingTest 50
+Mario's Menu
+1. Margherita
+Med tomat og ost
+DKK 73,00
+
+2. Vesuvio
+Med skinke
+DKK 80,00
+
+3. Donko
+Med skinke, bacon
+DKK 85,00
+
+4. Mozzarella Pizza
+Med kebab, pesto, rucola
+DKK 90,00
+
+5. Marinara
+Med skinke, kødsauce
+DKK 85,00
+
+6. Capricciosa
+Med skinke, champignon
+DKK 82,00
+
+7. Jamaica
+Med kebab, gorgonzola, løg
+DKK 90,00
+
+8. Hawaii
+Med skinke, ananas
+DKK 82,00
+
+9. Mexicana
+Med kødsauce, løg, paprika, chili
+DKK 90,00
+
+10. Venus
+Med skinke, paprika
+DKK 82,00
+
+11. Roma
+Med kødsauce, champignon
+DKK 82,00
+
+12. Italiana
+Med kødsauce, løg
+DKK 82,00
+
+13. Samos
+Med tunfisk, rejer
+DKK 85,00
+
+14. Palermo
+Med pepperoni, grøn peber, løg
+DKK 90,00
+
+15. Opera
+Med pepperoni, bacon, æg
+DKK 90,00
+
+16. Serkon
+Med pepperoni, cocktailpølser, bacon
+DKK 90,00
+
+17. Marco
+Med kylling, cocktailpølser, bacon
+DKK 90,00
+
+18. Quatro Stagioni
+Med skinke, champignon, rejer
+DKK 90,00
+
+19. Pascare
+Med skinke, pepperoni, bacon
+DKK 90,00
+
+20. Chicken
+Med kylling, rejer, bacon
+DKK 90,00
+
+21. Vegetariana
+Med champignon, paprika, løg, grøn peber, ananas, oliven
+DKK 90,00
+
+22. Milas
+Med skinke, pepperoni, grøn peber
+DKK 90,00
+
+23. Florida
+Med hakket oksekød, champignon
+DKK 82,00
+
+24. Maderia
+Med kødstrimler, løg, champignon
+DKK 90,00
+
+25. Americano
+DKK 82,00
+Med hakket oksekød, chili
+
+26. Marios Special
+Med kebab, champignon, paprika, chili
+DKK 90,00
+
+27. Luksus Mix
+Med skinke, kebab, pepperoni, bacon
+DKK 99,00
+
+28. Tanja Special
+Med kødstrimler, pepperoni, grøn peber, chili, hvidløg
+DKK 99,00
+
+29. Laudrup
+Med hakket oksekød, pepperoni, grøn peber, chili, hvidløg
+DKK 99,00
+
+30. Alanya
+Med hakket oksekød, pepperoni, grøn peber, bacon, hvidløg
+DKK 99,00
+
+31. Juventus
+Med hakket oksekød, kødstrimler, grøn peber, gorgonzola
+DKK 102,00
+
+32. San Reno
+Med skinke, kebab, bearnaisesauce
+DKK 90,00
+
+33. Venedig
+Med kylling, bacon, ananas
+DKK 90,00
+
+SALAT PIZZA
+34. Kebab Pizza
+Kebab, salat, dressing
+DKK 90,00
+
+35. Milan
+Skinke, salat og dressing
+DKK 90,00
+
+36. Kylling Pizza
+Kylling, salat, dressing
+DKK 90,00
+
+37. Kødstrimler
+Kødstrimler, salat, dressing
+DKK 90,00
+
+38. Falafel
+Falafel, salat, dressing
+DKK 90,00
+
+INDBAGT PIZZA
+39. Berivan Special (Halvt Indbagt)
+Med kebab, champignon, løg, gorgonzola, tomat og ost
+DKK 99,00
+
+40. Matador (Halvt Indbagt)
+Med oksefilet, løg, tomat og ost
+DKK 99,00
+
+41. Matador Lux (Halvt Indbagt)
+Med oksefilet, champignon, bearnaisesauce, tomat og ost
+DKK 105,00
+
+42. Matador Special (Halvt Indbagt)
+Med grøn peber, paprika, oksefilet, champignon, chili, tomat og ost
+DKK 105,00
+
+43. Calzone
+Med skinke, tomat og ost
+DKK 80,00
+
+44. Lazio
+Med kødsauce, rejer, champignon, tomat og ost
+DKK 85,00
+
+45. Mamma Mia
+Med skinke, paprika, hvidløg, tomat og ost
+DKK 85,00
+
+46. Pizza Spaghetti
+Med spaghetti, kødsauce, tomat og ost
+DKK 85,00
+
+47. UFO (Dobbelt Indbagt)
+Med skinke, rejer, champignon, tomat og ost
+DKK 107,00
+
+48. Tåstrup Special (Dobbelt Indbagt)
+Med skinke, kødsauce, champignon, rejer, tomat og ost
+DKK 107,00
+
+MEXICANSKE PIZZAER
+49. Marcos
+Med kebab, pepperoni, jalapeños, tacosauce, tomat og ost
+DKK 99,00
+
+50. Chappas
+Med kødsauce, skinke, jalapeños, tacosauce, tomat og ost
+DKK 99,00
+
+51. Acapulco
+Med kebab, kylling, paprika, chili, hvidløg, tacosauce, tomat og ost
+DKK 99,00
+
+52. Verariz
+Med hakket oksekød, kylling, jalapeños, tacosauce, tomat og ost
+DKK 99,00
+
+53. Ernesto
+Med kylling, bacon, pepperoni, tacosauce, tomat og ost
+DKK 99,00
+
+54. Chico
+Med grøn peber, champignon, ananas, paprika, løg, jalapeños, tacosauce, tomat og ost
+DKK 99,00
