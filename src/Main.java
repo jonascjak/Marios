@@ -12,10 +12,17 @@ public class Main {
         mainMenu();
     }
 
+    public static void showList() {
+        System.out.println("Bestillingsliste:");
+        for (Order Order : orderList) {
+            System.out.println(Order);
+        }
+    }
     public static void mainMenu() throws FileNotFoundException {
         int answer;
 
         do {
+            showList();
             System.out.println("**Velkommen til Mario's Pizzabar**\nVælg en af de følgende muligheder for at fortsætte");
             System.out.println("Tast 1 for at Oprette Bestilling");
             System.out.println("Tast 2 for at Vise Menukort");
