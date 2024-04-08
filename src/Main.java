@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 public class Main {
     public static Scanner scan = new Scanner(System.in);
-    public ArrayList<Order> orderList = new ArrayList();
+    public static ArrayList<Order> orderList = new ArrayList();
     public static void main(String[] args) throws FileNotFoundException {
         mainMenu();
     }
@@ -65,13 +65,25 @@ public class Main {
     }
     public static void addOrder(){
         ArrayList<Pizza> Pizzas = new ArrayList<>();
-        do {
-            Pizza first = new Pizza(scan.nextInt(), scan.nextLine());
-            Pizzas.add(first);
-        } while(newPizza)
+        System.out.println("Skal bestillingen levers?");
+        String delivery = scan.next();
+        try {
+            int answer;
+            do {
+                System.out.println("Hvilken pizza er blevet bestitl?");
+                Pizza first = new Pizza(scan.nextInt(), scan.nextLine());
+                Pizzas.add(first);
+                System.out.println("Vil du tilføje flere pizza'er?");
+                answer= scan.nextInt();
+            } while (answer != 0);
+        } catch (Exception e){
+
+        }
         LocalTime time = LocalTime.now();
-        time.plusMinutes(15);
-        Order currentOrder = new Order(time.withNano(0),60,Pizzas);
+        //time.plusMinutes(15);
+        Order currentOrder = new Order(time,60,Pizzas);
         System.out.printf(currentOrder.toString());
+        orderList.add((currentOrder));
+        orderList.toString();
     }
 }
