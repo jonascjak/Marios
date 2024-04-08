@@ -93,10 +93,10 @@ public class Main {
         if(beDelivered != 2){
             System.out.println("Hvad er leverings addressen?");
             String deliveryAddress = scan.next();
-            Order currentOrder = new Order(deliveryAddress,deliverTime.withNano(0),60,Pizzas);
+            Order currentOrder = new Order(orderList.size()+1,deliveryAddress,deliverTime.withNano(0),60,Pizzas);
             orderList.add((currentOrder));
         } else {
-            Order currentOrder = new Order(deliverTime.withNano(0), 60, Pizzas);
+            Order currentOrder = new Order(orderList.size()+1,deliverTime.withNano(0), 60, Pizzas);
             orderList.add((currentOrder));
         }
     }
