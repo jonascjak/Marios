@@ -59,8 +59,7 @@ public class Main {
 
                     break;
                 case 5:
-                    System.out.println("Oversigt over omsætning samt Top 5 Pizzaer:");
-                    //showStatistics();
+                    PrintRevenueAndTopFive();
                     break;
 
                 default:
@@ -130,6 +129,14 @@ public class Main {
         } else {
             System.out.println("Ugyldigt ordrenummer.");
         }
+    }
+
+    public static void PrintRevenueAndTopFive ()    {
+        System.out.println("Oversigt over omsætning samt Top 5 Pizzaer:");
+        System.out.print("Oms = ");
+        System.out.println(Statistics.showStatistics());
+
+        Statistics.showTopFive();
     }
 }
 
