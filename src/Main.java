@@ -70,13 +70,12 @@ public class Main {
 
     }
 
-    public static String showMenu() throws FileNotFoundException {
+    public static void showMenu() throws FileNotFoundException {
         Scanner menuFile = new Scanner(new File("src/menu.txt"));
         while (menuFile.hasNextLine()) {
             System.out.println(menuFile.nextLine());
         }
         menuFile.close();
-        return menuFile.toString();
     }
 
     public static void addOrder() {
