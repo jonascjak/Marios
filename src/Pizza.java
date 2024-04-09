@@ -2,18 +2,18 @@ import java.io.File;
 import java.time.LocalTime;
 
 public class Pizza {
-    File menu = new File("menu.txt");
     int pizzaNumber;
-    String comments;
+    String pizzaName;
+    String toppings;
+    Double pizzaPrice;
 
-    public Pizza(int pizzaNumber){
+    public Pizza(int pizzaNumber, String pizzaName, String toppings, Double pizzaPrice) {
         this.pizzaNumber = pizzaNumber;
-    }
-    public Pizza(int pizzaNumber, String comments){
-        this.pizzaNumber = pizzaNumber;
-        this.comments = comments;
+        this.pizzaName = pizzaName;
+        this.toppings = toppings;
+        this.pizzaPrice = pizzaPrice;
     }
     public String toString() {
-        return "\nNumber: "+pizzaNumber+"\nComments: "+comments+"\n";
+        return "\nNumber: "+pizzaNumber+" "+pizzaName+" "+toppings+" "+pizzaPrice;
     }
 }

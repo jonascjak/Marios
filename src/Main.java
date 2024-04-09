@@ -8,9 +8,11 @@ import static java.time.LocalTime.*;
 public class Main {
     public static Scanner scan = new Scanner(System.in);
     public static ArrayList<Order> orderList = new ArrayList();
+    public static ArrayList<Pizza> allPizzaList = new ArrayList();
     public static LocalTime time = now();
 
     public static void main(String[] args) throws FileNotFoundException {
+        readMenu();
         mainMenu();
     }
 
@@ -76,10 +78,16 @@ public class Main {
     public static void addOrder() {
         ArrayList<Pizza> Pizzas = new ArrayList<>();
         int answer;
+        double totalPrice = 0;
         do {
-            System.out.println("Hvilken pizza er blevet bestitl? Indtast nummeret på pizzaen og evt. kommentar");
-            Pizza first = new Pizza(scan.nextInt(), scan.nextLine());
-            Pizzas.add(first);
+            System.out.println("Hvad er nummeret på pizzaen som er blevet bestilt?");
+            try {
+                Pizza first = allPizzaList.get(scan.nextInt() - 1);
+                Pizzas.add(first);
+                totalPrice += first.pizzaPrice;
+            } catch(Exception e){
+                System.out.println("Den pizza findes ikke i systemet");
+            }
             System.out.println("Vil du tilføje flere pizza'er?\nTast 1 for ja\nTast 2 for nej");
             answer = scan.nextInt();
         } while (answer != 2);
@@ -102,10 +110,10 @@ public class Main {
         if (beDelivered != 2) {
             System.out.println("Hvad er leverings addressen?");
             deliveryAddress = scan.next();
-            Order currentOrder = new Order(orderList.size() + 1, deliveryAddress, deliveryTime.withNano(0), 60, Pizzas);
+            Order currentOrder = new Order(orderList.size() + 1, deliveryAddress, deliveryTime.withNano(0), totalPrice, Pizzas);
             orderList.add((currentOrder));
         } else {
-            Order currentOrder = new Order(orderList.size() + 1, deliveryTime.withNano(0), 60, Pizzas);
+            Order currentOrder = new Order(orderList.size() + 1, deliveryTime.withNano(0), totalPrice, Pizzas);
             orderList.add((currentOrder));
         }
     }
@@ -130,8 +138,27 @@ public class Main {
         System.out.println("Oversigt over omsætning samt Top 5 Pizzaer:");
         System.out.print("Oms = ");
         System.out.println(Statistics.showStatistics());
-
         Statistics.showTopFive();
+    }
+
+    public static ArrayList<Pizza> readMenu() throws FileNotFoundException {
+        Scanner readReceipts;
+        readReceipts = new Scanner (new File("src/menu.txt"));
+        String pizzaToppings = "";
+        while(readReceipts.hasNextLine()) {
+            String line =   readReceipts.nextLine();
+            Scanner lineReader = new Scanner(line);
+            int pizzaId = lineReader.nextInt();
+            String pizzaName = lineReader.next();
+            while (lineReader.hasNext() && !lineReader.hasNextDouble()){
+                pizzaToppings = lineReader.next();
+            }
+            double pizzaPrice = lineReader.nextDouble();
+            Pizza tempPizza = new Pizza(pizzaId,pizzaName,pizzaToppings,pizzaPrice);
+            allPizzaList.add(tempPizza);
+        }
+        readReceipts.close();
+        return allPizzaList;
     }
 }
 
