@@ -1,24 +1,28 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Collections.*;
 import java.util.Scanner;
 import java.time.LocalTime;
+import static java.time.LocalTime.*;
 
 public class Main {
     public static Scanner scan = new Scanner(System.in);
     public static ArrayList<Order> orderList = new ArrayList();
-
+    public static LocalTime time = now();
     public static void main(String[] args) throws FileNotFoundException {
         mainMenu();
     }
 
     public static void showList() {
-        System.out.println("Bestillingsliste:");
-        for (Order Order : orderList) {
-            System.out.println(Order);
+        /*System.out.println("Bestillingsliste:");
+
+        Collections.sort(orderList);
+        for (Order orders : orderList) {
+            System.out.println(orders);*/
         }
-    }
 
     public static void mainMenu() throws FileNotFoundException {
         int answer;
@@ -59,15 +63,12 @@ public class Main {
                     //showStatistics();
                     break;
 
-                case 0:
-                    System.out.println("Tak for denne gang.");
-                    System.exit(0);
-
                 default:
                     System.out.println("Ugyldig valgmulighed, vælg venligst enten 1, 2 eller 3.");
             }
         } while (answer != 0);
-
+        System.out.println("Tak for denne gang.");
+        System.exit(0);
     }
 
     public static void showMenu() throws FileNotFoundException {
@@ -88,21 +89,32 @@ public class Main {
             System.out.println("Vil du tilføje flere pizza'er?\nTast 1 for ja\nTast 2 for nej");
             answer = scan.nextInt();
         } while (answer != 2);
-        LocalTime time = LocalTime.now();
-        LocalTime deliverTime = time.plusMinutes(15);
+
+        String deliveryAddress = null;
+        LocalTime deliveryTime = null;
+        LocalTime time = now();
+        System.out.println("Skal bestillingen leveres på andet specielt tidspunkt?\nTast 1 for ja\nTast 2 for nej");
+        int whatTime = scan.nextInt();
+
+        if (whatTime != 2) {
+            System.out.println("Indtast tidspunkt");
+            deliveryTime = LocalTime.parse(scan.next());
+        }else {
+            deliveryTime = time.plusMinutes(15);
+        }
         System.out.println("Skal bestillingen levers?\nTast 1 for ja\nTast 2 for nej");
         int beDelivered = scan.nextInt();
+
         if (beDelivered != 2) {
             System.out.println("Hvad er leverings addressen?");
-            String deliveryAddress = scan.next();
-            Order currentOrder = new Order(orderList.size()+1,deliveryAddress, deliverTime.withNano(0), 60, Pizzas);
+            deliveryAddress = scan.next();
+            Order currentOrder = new Order(orderList.size() + 1, deliveryAddress, deliveryTime.withNano(0), 60, Pizzas);
             orderList.add((currentOrder));
         } else {
-            Order currentOrder = new Order(orderList.size()+1, deliverTime.withNano(0), 60, Pizzas);
+            Order currentOrder = new Order(orderList.size() + 1, deliveryTime.withNano(0), 60, Pizzas);
             orderList.add((currentOrder));
         }
     }
-
     public static void editOrder() {
         System.out.println("Indtast ordrenummeret du ønsker at redigere:");
         int orderNumber = scan.nextInt()-1;
@@ -117,7 +129,6 @@ public class Main {
             System.out.println("Ordrernummer " + orderNumber + " er ændret.");
         } else {
             System.out.println("Ugyldigt ordrenummer.");
-
         }
     }
 }
