@@ -17,13 +17,12 @@ public class Main {
     }
 
     public static void showList() {
-        /*System.out.println("Bestillingsliste:");
+        System.out.println("Bestillingsliste:");
 
-        Collections.sort(orderList);
         for (Order orders : orderList) {
-            System.out.println(orders);*/
+            System.out.println("Order Time: " + orderList.getOrderTime());
         }
-
+    }
     public static void mainMenu() throws FileNotFoundException {
         int answer;
 
