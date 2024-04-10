@@ -36,7 +36,7 @@ public class MariosPizzabar {
             String boldTextTime = ("\033[1m" + "Afhentningstidspunkt: " + "\033[0m" + Orders.orderTime);
             System.out.println(boldTextTime);
 
-            String boldTextPizza= ("\033[1m" + "Nr:" + "\033[0m" + Orders.order);
+            String boldTextPizza= ("\033[1m" + "Pizza: " + "\033[0m" + Orders.order);
             System.out.println(boldTextPizza);
 
             if (Orders.delivery != false) {
