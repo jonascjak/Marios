@@ -2,20 +2,19 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
-import java.time.LocalTime;
-import static java.time.LocalTime.*;
-import java.io.FileWriter;
-import java.util.*;
+import static java.time.LocalTime.now;
+import static java.time.LocalTime.parse;
 
 public class MariosPizzabar {
     //public static så det er tilgængeligt for alle, uden at parameteroverføre
     public static Scanner scan = new Scanner(System.in);
     public static ArrayList<Order> orderList = new ArrayList();
     public static ArrayList<Pizza> allPizzaList = new ArrayList();
-    public static LocalTime time = now();
 
     public static void main(String[] args) throws FileNotFoundException {
         readMenu();
@@ -23,19 +22,29 @@ public class MariosPizzabar {
     }
 
     public static void showList() {
-        System.out.println("Bestillingsliste:");
+        String boldText = "\033[1m" + "BESTILLINGSLISTE:" + "\033[0m";
+        System.out.println(boldText);
 
         /*Da collections.sort kun kan sortere efter numerisk eller alfabetisk rækkefølge bruger vi
         comparator for at sortere efter LocalTime orderTime*/
-        orderList.sort(Comparator.comparing(t->t.orderTime));
+        orderList.sort(Comparator.comparing(t -> t.orderTime));
 
-        for (Order Orders:orderList) {
-            System.out.println(Orders.orderNumber);
-            System.out.print(Orders.orderTime + " ");
-            System.out.print(Orders.order + " ");
-            System.out.print("Leveringsadresse:" + Orders.deliveryAddress + " ");
-            System.out.println();
-            System.out.println();
+        for (Order Orders : orderList) {
+            String boldTextNr = ("\033[1m" + "Bestillingsnr: " + "\033[0m" + Orders.orderNumber);
+            System.out.println(boldTextNr);
+
+            String boldTextTime = ("\033[1m" + "Afhentningstidspunkt: " + "\033[0m" + Orders.orderTime);
+            System.out.println(boldTextTime);
+
+            String boldTextPizza= ("\033[1m" + "Nr:" + "\033[0m" + Orders.order);
+            System.out.println(boldTextPizza);
+
+            if (Orders.delivery != false) {
+                System.out.print("Leveringsadresse:" + Orders.deliveryAddress + " ");
+                System.out.println();
+                System.out.println();
+            } else {
+            }
         }
     }
     public static void mainMenu() throws FileNotFoundException {
@@ -43,13 +52,27 @@ public class MariosPizzabar {
 
         do {
             showList();
+            System.out.println();
             System.out.println("**Velkommen til Mario's Pizzabar**\nVælg en af de følgende muligheder for at fortsætte");
-            System.out.println("Tast 1 for at Oprette Bestilling");
-            System.out.println("Tast 2 for at Redigere ordre");
-            System.out.println("Tast 3 for at Slette ordre");
-            System.out.println("Tast 4 for at Vise Menukort");
-            System.out.println("Tast 5 for at Vise Statistik");
-            System.out.println("Tast 0 for at afslutte Hovedmenu");
+
+            String boldText1 = ("Tast 1 for at " + "\033[1m" + "Oprette Bestilling" + "\033[0m");
+            System.out.println(boldText1);
+
+            String boldText2 = ("Tast 2 for at " + "\033[1m" + "Redigere Ordre" + "\033[0m");
+            System.out.println(boldText2);
+
+            String boldText3 = ("Tast 3 for at " + "\033[1m" + "Slette Ordre" + "\033[0m");
+            System.out.println(boldText3);
+
+            String boldText4 = ("Tast 4 for at " + "\033[1m" + "Vise Menukort " + "\033[0m");
+            System.out.println(boldText4);
+
+            String boldText5 = ("Tast 5 for at " + "\033[1m" + "Vise Statistik" + "\033[0m");
+            System.out.println(boldText5);
+
+            String boldText0 = ("Tast 0 for at " + "\033[1m" + "Afslutte Hovedmenu" + "\033[0m");
+            System.out.println(boldText0);
+
             answer = scan.nextInt();
 
             switch (answer) {
@@ -122,7 +145,7 @@ public class MariosPizzabar {
 
         if (whatTime != 2) {
             System.out.println("Indtast tidspunkt:");
-            deliveryTime = LocalTime.parse(scan.next());
+            deliveryTime = parse(scan.next());
         }else {
             deliveryTime = time.plusMinutes(15);
         }
@@ -143,10 +166,13 @@ public class MariosPizzabar {
         System.out.println("Indtast ordrenummeret du ønsker at redigere:");
         int orderNumber = scan.nextInt()-1;
 
+        //tjekker om der er ordre at vælge til at ændre i
         if (orderNumber >= 0 && orderNumber < orderList.size()) {
             System.out.println("Rediger ordre:");
+            //i addOrder metoden sættes ordren ind i array'et
             addOrder();
             orderList.remove(orderNumber);
+
            //for at sikre at orderNumber starter på 1, fremfor 0.
             orderNumber += 1;
 

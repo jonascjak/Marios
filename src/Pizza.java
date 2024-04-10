@@ -14,6 +14,6 @@ public class Pizza {
         this.pizzaPrice = pizzaPrice;
     }
     public String toString() {
-        return "\nNumber: "+pizzaNumber+" "+pizzaName+" "+toppings+" "+pizzaPrice;
+        return pizzaNumber+" "+pizzaName+" "+toppings+" "+pizzaPrice + " KR";
     }
 }
