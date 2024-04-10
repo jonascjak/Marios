@@ -190,12 +190,14 @@ public class MariosPizzabar {
             Order deletedOrder = orderList.remove(orderNumber);
             try (FileWriter writer = new FileWriter("src/Receipts.txt", true)) {
                 //writer.write("Order Number: " + deletedOrder.orderNumber + "\n");
-                writer.write(deletedOrder.order + "\n");
+                writer.write("\n");
+                writer.write(deletedOrder.order + "");
+
                 //writer.write((int) deletedOrder.totalPrice);
                 //if (deletedOrder.delivery) {
                 //writer.write("Delivery Address: " + deletedOrder.deliveryAddress + "\n");
                 //}
-                System.out.println(allPizzaList);
+                //System.out.println(allPizzaList);
                /* for (Pizza pizza: deletedOrder.order) {
                     writer.write("Pizza Number: " + pizza.pizzaNumber + "\n");
                 }*/

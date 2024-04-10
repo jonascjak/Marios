@@ -28,8 +28,12 @@ public class Statistics  {
         while(readReceipts.hasNextLine()) {
             String line = readReceipts.nextLine();
             Scanner lineReader = new Scanner(line);
+            lineReader.useLocale(ENGLISH);
+            String number = lineReader.next();
+            String name = lineReader.next();
             String token = lineReader.next();
             revenueSum += lineReader.nextDouble();
+            String kr = lineReader.next();
         }
         return revenueSum;
 
@@ -38,14 +42,18 @@ public class Statistics  {
     public static ArrayList<String> showTopFive () {
 
         ArrayList<String> pizza = new ArrayList<>();                    //ArrayList med pizza fra Receipt.txt
-        ArrayList<String> topFivePizza = new ArrayList<>();             // Arraylist med top 5 pizzer fra pizza ArrayList
+        ArrayList<String> topFivePizza = new ArrayList<>();             // Arraylist med top 5 pizzaer fra pizza ArrayList
 
 //Loop der fylder ArrayList med pizzaer fra filen (Kun navnene, prisen).
         while (readReceipts2.hasNextLine())  {
             String line = readReceipts2.nextLine();
             Scanner lineReader = new Scanner(line);
-            String name = lineReader.next();
+            lineReader.useLocale(ENGLISH);
             String number = lineReader.next();
+            String name = lineReader.next();
+            String dkk = lineReader.next();
+            double pris = lineReader.nextDouble();
+            String kr = lineReader.next();
             pizza.add(name);
         }
 // Sortere ArrayList.
