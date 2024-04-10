@@ -5,7 +5,7 @@ import java.util.*;
 import static java.util.Locale.ENGLISH;
 
 public class Statistics  {
-
+//2 Scannere oprettet for at undgå at starte lsæning af fil et forkert sted.
     public static Scanner readReceipts;
     public static Scanner readReceipts2;
 
@@ -21,7 +21,7 @@ public class Statistics  {
         }
     }
 
-
+//Metode der læser fra Receipt.txt og finder alle doubles (Pris), akkummulere summen og returnere.
     public static double showStatistics() {
         double revenueSum = 0;
 
@@ -31,34 +31,44 @@ public class Statistics  {
             String token = lineReader.next();
             revenueSum += lineReader.nextDouble();
         }
-        readReceipts.close();
         return revenueSum;
 
     }
-
+//Metode der læser fra Receipts.txt og finder navnene på pizzaerne, printer de mest solgte pizzaer (top 5)
     public static void showTopFive () {
-        ArrayList<String> Receipts = new ArrayList<String>();
 
-        while(readReceipts2.hasNextLine()) {
+        ArrayList<String> pizza = new ArrayList<>();                    //ArrayList med pizza fra Receipt.txt
+        ArrayList<String> topFivePizza = new ArrayList<>();             // Arraylist med top 5 pizzer fra pizza ArrayList
+
+//Loop der fylder ArrayList med pizzaer fra filen (Kun navnene, prisen).
+        while (readReceipts2.hasNextLine())  {
             String line = readReceipts2.nextLine();
-            String[] tokens = line.split(" ");
-            String name = tokens[0];
-            Receipts.add(name);
+            Scanner lineReader = new Scanner(line);
+            String name = lineReader.next();
+            String number = lineReader.next();
+            pizza.add(name);
         }
+// Sortere ArrayList.
+        Collections.sort(pizza);
 
-        Collections.sort(Receipts);
-
-        Map <String, Integer> ReceiptCounter = new HashMap<>();
-
-        for(String pizza : Receipts) {
-            ReceiptCounter.put(pizza, ReceiptCounter.getOrDefault(pizza, 0) + 1);
+// Loop der tæller antal gengangere i ArrayList og printer til konsol.
+        int sum = 1;
+// if condition i+1 < pizza.size() gør at loopet ikke læser udover ArrayList / avoider fencepost error
+        for(int i = 0; i < pizza.size(); i++)    {
+            if(i + 1 < pizza.size() && pizza.get(i + 1) != null && pizza.get(i).equalsIgnoreCase(pizza.get(i + 1)))   {
+                sum += 1;
+            } else {
+                StringBuilder buildString = new StringBuilder();
+                buildString.append(sum + " x ");
+                buildString.append(pizza.get(i));
+                topFivePizza.add(String.valueOf(buildString));
+                sum = 1;
+            }
         }
-
-        System.out.println("Pizza Counts:");
-
-        for (Map.Entry<String, Integer> entry : ReceiptCounter.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-
+        int g = 0;
+        for(String topFive : topFivePizza)  {
+            System.out.println(topFivePizza.get(g));
+            g++;
         }
     }
 }
