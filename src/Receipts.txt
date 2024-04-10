@@ -7,4 +7,34 @@ Donko 85,00
 Donko 85,00
 Margherita 73,00
 Napoli 60,00
-Blah 100,00
+Blah 100,00[
+Number: 22 Milas DKK 90.0]
+Total Price: 90.0
+Pizza Number: 22
+
+[
+Number: 22 Milas DKK 90.0]
+Total Price: 90.0
+Pizza Number: 22
+
+[
+Number: 11 Roma champignon 82.0]
+Total Price: 82.0
+Pizza Number: 11
+
+[
+Number: 22 Milas DKK 90.0]
+Pizza Number: 22
+
+[
+Number: 22 Milas DKK 90.0]
+Pizza Number: 22
+
+[
+Number: 11 Roma champignon 82.0, 
+Number: 22 Milas DKK 90.0]
+Pizza Number: 11
+Pizza Number: 22
+[
+Number: 22 Milas DKK 90.0, 
+Number: 33 Venedig ananas 90.0]

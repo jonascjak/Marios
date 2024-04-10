@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.time.LocalTime;
 import static java.time.LocalTime.*;
+import java.io.FileWriter;
+import java.util.*;
 
 public class MariosPizzabar {
     //public static så det er tilgængeligt for alle, uden at parameteroverføre
@@ -63,7 +65,8 @@ public class MariosPizzabar {
 
                 case 3:
                     System.out.println("Slet ordre");
-                    //deleteOrder();
+                    DeleteOrder();
+                    break;
 
                 case 4:
                     System.out.println("Her er Mario's menukort:");
@@ -152,6 +155,34 @@ public class MariosPizzabar {
             System.out.println("Ugyldigt ordrenummer.");
         }
     }
+    public static void DeleteOrder() {
+        System.out.println("Indtast det odrernummer du ønsker at slette:");
+        int orderNumber = scan.nextInt() - 1;
+
+
+        if (orderNumber >= 0 && orderNumber < orderList.size()) {
+            Order deletedOrder = orderList.remove(orderNumber);
+            try (FileWriter writer = new FileWriter("src/Receipts.txt", true)) {
+                //writer.write("Order Number: " + deletedOrder.orderNumber + "\n");
+                writer.write(deletedOrder.order + "\n");
+                //writer.write((int) deletedOrder.totalPrice);
+                //if (deletedOrder.delivery) {
+                //writer.write("Delivery Address: " + deletedOrder.deliveryAddress + "\n");
+                //}
+                System.out.println(allPizzaList);
+               /* for (Pizza pizza: deletedOrder.order) {
+                    writer.write("Pizza Number: " + pizza.pizzaNumber + "\n");
+                }*/
+                //writer.write("\n");
+                System.out.println("Order nummer " + (orderNumber + 1) + " er blevet slettet og gemt i receipts.");
+            } catch (Exception e) {
+                System.err.println("Error writing to file: " + e.getMessage());
+            }
+        } else {
+            System.out.println("forkert indtastning.");
+        }
+    }
+
 
     public static void PrintRevenueAndTopFive ()    {
         System.out.println("Oversigt over omsætning samt Top 5 Pizzaer:");
