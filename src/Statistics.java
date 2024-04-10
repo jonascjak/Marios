@@ -35,7 +35,7 @@ public class Statistics  {
 
     }
 //Metode der læser fra Receipts.txt og finder navnene på pizzaerne, printer de mest solgte pizzaer (top 5)
-    public static void showTopFive () {
+    public static ArrayList<String> showTopFive () {
 
         ArrayList<String> pizza = new ArrayList<>();                    //ArrayList med pizza fra Receipt.txt
         ArrayList<String> topFivePizza = new ArrayList<>();             // Arraylist med top 5 pizzer fra pizza ArrayList
@@ -65,10 +65,14 @@ public class Statistics  {
                 sum = 1;
             }
         }
-        int g = 0;
-        for(String topFive : topFivePizza)  {
-            System.out.println(topFivePizza.get(g));
-            g++;
+
+        Collections.sort(topFivePizza, Collections.reverseOrder());                         //Sortere topFivePizza ArrayList ud fra mest solgte
+
+        for (int i = 5; i < topFivePizza.size(); i++)   {                                   //Fjerner alle pizzaer i ArrayList der ikke er top 5
+            topFivePizza.remove(i);
         }
+
+
+        return topFivePizza;
     }
 }

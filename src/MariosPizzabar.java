@@ -155,9 +155,11 @@ public class MariosPizzabar {
 
     public static void PrintRevenueAndTopFive ()    {
         System.out.println("Oversigt over omsætning samt Top 5 Pizzaer:");
-        System.out.print("Oms = ");
-        System.out.println(Statistics.showStatistics());
-        Statistics.showTopFive();
+        System.out.printf("Omsætning: %15.2f kr.", Statistics.showStatistics());
+        System.out.println();
+        System.out.print("Top 5 mest solgte: ");
+        System.out.println(Statistics.showTopFive());
+        System.out.println();
     }
 
     public static ArrayList<Pizza> readMenu() throws FileNotFoundException {
