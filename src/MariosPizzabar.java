@@ -182,31 +182,25 @@ public class MariosPizzabar {
         }
     }
     public static void DeleteOrder() {
+
         System.out.println("Indtast det odrernummer du ønsker at slette:");
         int orderNumber = scan.nextInt() - 1;
 
-
         if (orderNumber >= 0 && orderNumber < orderList.size()) {
             Order deletedOrder = orderList.remove(orderNumber);
-            try (FileWriter writer = new FileWriter("src/Receipts.txt", true)) {
-                //writer.write("Order Number: " + deletedOrder.orderNumber + "\n");
-                writer.write("\n");
-                writer.write(deletedOrder.order + "");
 
-                //writer.write((int) deletedOrder.totalPrice);
-                //if (deletedOrder.delivery) {
-                //writer.write("Delivery Address: " + deletedOrder.deliveryAddress + "\n");
-                //}
-                //System.out.println(allPizzaList);
-               /* for (Pizza pizza: deletedOrder.order) {
-                    writer.write("Pizza Number: " + pizza.pizzaNumber + "\n");
-                }*/
-                //writer.write("\n");
+            try (FileWriter writer = new FileWriter("src/Receipts.txt", true)) {
+
+                writer.write(deletedOrder.toReceipts());
+
                 System.out.println("Order nummer " + (orderNumber + 1) + " er blevet slettet og gemt i receipts.");
+
             } catch (Exception e) {
+
                 System.err.println("Error writing to file: " + e.getMessage());
             }
         } else {
+
             System.out.println("forkert indtastning.");
         }
     }

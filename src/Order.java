@@ -30,5 +30,14 @@ public class Order {
     public String toString() {
      return !delivery ? orderNumber+"\nPickup time: "+orderTime+"\nTotal price: "+totalPrice+"\n"+order.toString() : orderNumber+"\nDelivery time: "+orderTime+"\nDelivery address: "+deliveryAddress+"\nTotal price: "+totalPrice+"\n"+order.toString();
 
-}
+    }
+
+    public String toReceipts () {
+        String pizzaString = "";
+
+        for (Pizza pizza : order)    {
+            pizzaString += String.valueOf(pizza)+"\n";
+        }
+        return pizzaString;
+    }
 }
