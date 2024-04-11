@@ -151,14 +151,14 @@ public class MariosPizzabar {
         }
         System.out.println("Skal bestillingen leveres?\nTast 1 for ja\nTast 2 for nej");
         int beDelivered = scan.nextInt();
-
         if (beDelivered != 2) {
             System.out.println("Indtast leveringsaddressen:");
-            deliveryAddress = scan.next();
-            Order currentOrder = new Order(orderList.size() + 1, deliveryAddress, deliveryTime.withNano(0), totalPrice, Pizzas);
+            scan.nextLine(); // Midlertidige linje for at rykke TOKEN væk fra forrige scannet linje
+            deliveryAddress = scan.nextLine();
+            Order currentOrder = new Order(orderList.size() + 1, deliveryAddress, deliveryTime.withSecond(0).withNano(0), totalPrice, Pizzas);
             orderList.add((currentOrder));
         } else {
-            Order currentOrder = new Order(orderList.size() + 1, deliveryTime.withNano(0), totalPrice, Pizzas);
+            Order currentOrder = new Order(orderList.size() + 1, deliveryTime.withSecond(0).withNano(0), totalPrice, Pizzas);
             orderList.add((currentOrder));
         }
     }
