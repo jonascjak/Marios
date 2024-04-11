@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
+
 import static java.time.LocalTime.now;
 import static java.time.LocalTime.parse;
 
@@ -40,13 +41,18 @@ public class MariosPizzabar {
             System.out.println(boldTextPizza);
 
             if (Orders.delivery != false) {
-                System.out.print("Leveringsadresse:" + Orders.deliveryAddress + " ");
+                String boldTextDeliver= ("\033[1m" + "Leveringsadresse: " + "\033[0m" + Orders.deliveryAddress);
+                System.out.println(boldTextDeliver);
                 System.out.println();
                 System.out.println();
-            } else {
+            }else {
             }
+
+            String boldTextTotalPrice= ("\033[1m" + "Totalpris: " + "\033[0m" + Orders.totalPrice);
+            System.out.println(boldTextTotalPrice);
         }
     }
+
     public static void mainMenu() throws FileNotFoundException {
         int answer;
 
@@ -101,7 +107,7 @@ public class MariosPizzabar {
                     break;
 
             }
-        } while (answer != 0);
+        }while (answer != 0);
         System.out.println("Tak for denne gang.");
         System.exit(0);
     }
@@ -123,16 +129,16 @@ public class MariosPizzabar {
         do {
             System.out.println("Indtast pizzanummer: ");
             try {
-                Pizza first = allPizzaList.get(scan.nextInt() - 1);
-                Pizzas.add(first);
-                totalPrice += first.pizzaPrice;
-            } catch(Exception e){
+                Pizza tempPizza = allPizzaList.get(scan.nextInt() - 1);
+                Pizzas.add(tempPizza);
+                totalPrice += tempPizza.pizzaPrice;
+            }catch(Exception e){
                 System.out.println("Den pizza findes ikke i systemet.");
             }
             System.out.println("Vil du tilføje flere pizza'er?\nTast 1 for ja\nTast 2 for nej");
             answer = scan.nextInt();
 
-        } while (answer != 2);
+        }while (answer != 2);
 
         String deliveryAddress = null;
         LocalTime deliveryTime = null;
@@ -144,24 +150,26 @@ public class MariosPizzabar {
         int whatTime = scan.nextInt();
 
         if (whatTime != 2) {
-            System.out.println("Indtast tidspunkt:");
+            System.out.println("Indtast tidspunkt (angives i timer:min): ");
             deliveryTime = parse(scan.next());
         }else {
             deliveryTime = time.plusMinutes(15);
         }
         System.out.println("Skal bestillingen leveres?\nTast 1 for ja\nTast 2 for nej");
         int beDelivered = scan.nextInt();
+
         if (beDelivered != 2) {
             System.out.println("Indtast leveringsaddressen:");
             scan.nextLine(); // Midlertidige linje for at rykke TOKEN væk fra forrige scannet linje
             deliveryAddress = scan.nextLine();
             Order currentOrder = new Order(orderList.size() + 1, deliveryAddress, deliveryTime.withSecond(0).withNano(0), totalPrice, Pizzas);
             orderList.add((currentOrder));
-        } else {
+        }else {
             Order currentOrder = new Order(orderList.size() + 1, deliveryTime.withSecond(0).withNano(0), totalPrice, Pizzas);
             orderList.add((currentOrder));
         }
     }
+
     public static void editOrder() {
         System.out.println("Indtast ordrenummeret du ønsker at redigere:");
         int orderNumber = scan.nextInt()-1;
@@ -171,40 +179,39 @@ public class MariosPizzabar {
             System.out.println("Rediger ordre:");
             //i addOrder metoden sættes ordren ind i array'et
             addOrder();
+            /*der 'redigeres' ikke reelt i den originale bestilling, i stedet slettes den gamle og
+            den nye bestilling erstatter den*/
             orderList.remove(orderNumber);
 
            //for at sikre at orderNumber starter på 1, fremfor 0.
             orderNumber += 1;
-
             System.out.println("Ordrernummer " + orderNumber + " er ændret.");
-        } else {
+        }else {
             System.out.println("Ugyldigt ordrenummer.");
         }
     }
     public static void DeleteOrder() {
-
-        System.out.println("Indtast det odrernummer du ønsker at slette:");
+        System.out.println("Indtast odrernummeret du ønsker at slette:");
         int orderNumber = scan.nextInt() - 1;
 
+        //tjekker om ordren findes i arraylisten (showList)
         if (orderNumber >= 0 && orderNumber < orderList.size()) {
             Order deletedOrder = orderList.remove(orderNumber);
 
+            //filewriter for at kunne tilføje de afsluttede/slettede ordre til receiptfile
             try (FileWriter writer = new FileWriter("src/Receipts.txt", true)) {
 
+                /*kalder en funktion i orderklassen, som printer hver pizza på en ny linje
+                (som tilføjes til receipt filen*/
                 writer.write(deletedOrder.toReceipts());
-
                 System.out.println("Order nummer " + (orderNumber + 1) + " er blevet slettet og gemt i receipts.");
-
             } catch (Exception e) {
-
-                System.err.println("Error writing to file: " + e.getMessage());
+                System.err.println("Fejlmelding: kan ikke skrive til fil: " + e.getMessage());
             }
-        } else {
-
+        }else {
             System.out.println("forkert indtastning.");
         }
     }
-
 
     public static void PrintRevenueAndTopFive ()    {
         System.out.println("Oversigt over omsætning samt Top 5 Pizzaer:");
@@ -218,12 +225,16 @@ public class MariosPizzabar {
     public static ArrayList<Pizza> readMenu() throws FileNotFoundException {
         Scanner readReceipts;
         readReceipts = new Scanner (new File("src/menu.txt"));
+        //laver en tom string som er udenfor while loop scope, for at kunne anvende det senere
         String pizzaToppings = "";
+
         while(readReceipts.hasNextLine()) {
-            String line =   readReceipts.nextLine();
+            String line = readReceipts.nextLine();
             Scanner lineReader = new Scanner(line);
             int pizzaId = lineReader.nextInt();
             String pizzaName = lineReader.next();
+
+            //læser alle string tokens, indtil den rammer en double
             while (lineReader.hasNext() && !lineReader.hasNextDouble()){
                 pizzaToppings = lineReader.next();
             }
