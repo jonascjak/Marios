@@ -5,9 +5,9 @@ public class Pizza {
     int pizzaNumber;
     String pizzaName;
     String toppings;
-    Double pizzaPrice;
+    double pizzaPrice;
 
-    public Pizza(int pizzaNumber, String pizzaName, String toppings, Double pizzaPrice) {
+    public Pizza(int pizzaNumber, String pizzaName, String toppings, double pizzaPrice) {
         this.pizzaNumber = pizzaNumber;
         this.pizzaName = pizzaName;
         this.toppings = toppings;
