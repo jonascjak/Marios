@@ -35,7 +35,7 @@ public class Order {
     public String toReceipts () {
         String pizzaString = "";
 
-        for (Pizza pizza : order)    {
+        for (Pizza pizza : order)    {                              //Splitter orden så der bliver skiftet linje for hver pizza i ordren.
             pizzaString += String.valueOf(pizza)+"\n";
         }
         return pizzaString;
